@@ -4,7 +4,7 @@
 #include "Bouton.h"
 
 /// <summary>
-/// 
+/// bonjour test
 /// </summary>
 /// 
 SDL_Texture* background;
