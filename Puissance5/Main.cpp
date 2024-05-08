@@ -1,34 +1,43 @@
-#include "SDL.h"
-#include "Game.h"
+#include "SDL.h" // Inclut la bibliothèque SDL
+#include "Game.h" // Inclut le fichier d'en-tête de la classe Game
 
-Game* game = nullptr;
+    // Ce programme est une démonstration simple d'un jeu de Puissance 5 réalisé avec SDL.
+    // Il crée une fenêtre de jeu, gère les événements, met à jour la logique du jeu et effectue le rendu graphique.
+    // Le framerate est limité à 60 images par seconde pour assurer une expérience de jeu fluide.
+
+Game* game = nullptr; // Pointeur vers l'objet Game
 
 int main(int argc, char* argv[]) {
 
-	// unité pour maximisé le framerate du jeux a 60 fps 
-	const int FPS = 60;
-	const int frameDelay = 1000 / FPS;
-	Uint32 frameStart;
-	int frameTime;
+    // Constantes pour contrôler le framerate
+    const int FPS = 60;
+    const int frameDelay = 1000 / FPS;
+    Uint32 frameStart;
+    int frameTime;
 
-	game = new Game();
-	game->init("PUISSANCE5", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 1400, false);
+    // Création d'une instance de la classe Game
+    game = new Game();
 
-	while (game-> running()) {
+    // Initialisation de la fenêtre de jeu
+    game->init("PUISSANCE5", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 1400, false);
 
-		frameStart = SDL_GetTicks();
+    // Boucle principale du jeu
+    while (game->running()) {
+        frameStart = SDL_GetTicks(); // Récupère le temps au début de la boucle
 
-		game->handleEvents();
-		game->update();
-		game->render();
+        game->handleEvents(); // Gestion des événements
+        game->update(); // Mise à jour de la logique du jeu
+        game->render(); // Rendu graphique du jeu
 
-		frameTime = SDL_GetTicks() - frameStart;
+        frameTime = SDL_GetTicks() - frameStart; // Calcule le temps écoulé dans la boucle
 
-		if (frameDelay > frameTime) {
-			SDL_Delay(frameDelay - frameTime);
-		}
-	}
-	game->clean();
+        // Si le temps écoulé est inférieur au délai entre les frames, on attend pour maintenir le framerate
+        if (frameDelay > frameTime) {
+            SDL_Delay(frameDelay - frameTime);
+        }
+    }
 
-	return 0;
+    game->clean(); // Nettoyage des ressources
+
+    return 0;
 }
