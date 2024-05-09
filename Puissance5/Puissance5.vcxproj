@@ -155,19 +155,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bouton.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\SDL2_image.dll" />
     <None Include="D:\Programme\SDL2-devel-2.30.3-VC\SDL2-2.30.3\lib\x64\SDL2.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bouton.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="ResourceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
