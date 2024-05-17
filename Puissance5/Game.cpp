@@ -6,7 +6,7 @@
 const int INF = std::numeric_limits<int>::max();
 const char player = 'X';
 const char opponent = 'O';
-const int MAX_DEPTH = 4;
+const int MAX_DEPTH = 6;
 
 Game::Game() : boardSize(BOARD_SIZE_MIN), running(false), window(nullptr), renderer(nullptr), currentState(MENU), player1("NomJoueur1", false, PlayerColor::RED), player2("NomJoueur2", true, PlayerColor::YELLOW) {
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -411,7 +411,7 @@ void Game::makeMove(std::vector<std::vector<char>>& board, int col, char player)
         if (board[i][col] == '-') {
             board[i][col] = player;
             if (&board == &(this->board)) {
-                updateRenderForCell(i, col); // Mettre à jour le rendu uniquement si la grille principale est modifiée
+                updateRenderForCell(i, col); // Mettre Ã  jour le rendu uniquement si la grille principale est modifiÃ©e
             }
             return;
         }
@@ -485,10 +485,10 @@ void Game::setupBoard() {
 void Game::performBotMove() {
     if (!isBot(currentPlayer)) return;
 
-    std::cout << "Bot is thinking..." << std::endl; // Journalisation pour le débogage
-    std::vector<std::vector<char>> boardCopy = copyBoard(board); // Créer une copie de la grille
+    std::cout << "Bot is thinking..." << std::endl; // Journalisation pour le dÃ©bogage
+    std::vector<std::vector<char>> boardCopy = copyBoard(board); // CrÃ©er une copie de la grille
     Move bestMove = findBestMove(boardCopy); // Utiliser la copie pour trouver le meilleur coup
-    std::cout << "Best move found: (" << bestMove.row << ", " << bestMove.col << ")" << std::endl; // Journalisation pour le débogage
+    std::cout << "Best move found: (" << bestMove.row << ", " << bestMove.col << ")" << std::endl; // Journalisation pour le dÃ©bogage
 
     if (bestMove.row != -1 && bestMove.col != -1) {
         makeMove(board, bestMove.col, currentPlayer); // Appliquer le meilleur coup sur la grille principale
@@ -685,7 +685,7 @@ int Game::evaluateWindow(const std::vector<char>& window, char piece) {
 }
 
 int Game::minimax(std::vector<std::vector<char>>& board, int depth, int alpha, int beta, bool isMaximizingPlayer) {
-    //std::cout << "Minimax call at depth " << depth << " for player " << (isMaximizingPlayer ? 'X' : 'O') << std::endl; // Journalisation pour le débogage
+    //std::cout << "Minimax call at depth " << depth << " for player " << (isMaximizingPlayer ? 'X' : 'O') << std::endl; // Journalisation pour le dÃ©bogage
 
     bool isTerminal = hasWon(board, 'X') || hasWon(board, 'O') || !isMovesLeft(board);
     if (depth == 0 || isTerminal) {
