@@ -63,6 +63,8 @@ public:
     std::unique_ptr<Button> size9Button;
     std::unique_ptr<Button> size10Button;
 
+    std::vector<std::vector<char>> copyBoard(const std::vector<std::vector<char>>& board); // Déclaration de la fonction copyBoard
+
 private:
     bool running;
     SDL_Window* window;

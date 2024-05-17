@@ -37,6 +37,10 @@ void drawCircle(SDL_Renderer* renderer, int centerX, int centerY, int radius) {
     }
 }
 
+std::vector<std::vector<char>> Game::copyBoard(const std::vector<std::vector<char>>& board) {
+    return board; // Copie simple de la grille
+}
+
 void Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen) {
     int flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
     window = SDL_CreateWindow(title, xpos, ypos, width, height, flags);
@@ -406,7 +410,9 @@ void Game::makeMove(std::vector<std::vector<char>>& board, int col, char player)
     for (int i = boardSize - 1; i >= 0; i--) {
         if (board[i][col] == '-') {
             board[i][col] = player;
-            updateRenderForCell(i, col);
+            if (&board == &(this->board)) {
+                updateRenderForCell(i, col); // Mettre à jour le rendu uniquement si la grille principale est modifiée
+            }
             return;
         }
     }
@@ -479,9 +485,13 @@ void Game::setupBoard() {
 void Game::performBotMove() {
     if (!isBot(currentPlayer)) return;
 
-    Move bestMove = findBestMove(board);
+    std::cout << "Bot is thinking..." << std::endl; // Journalisation pour le débogage
+    std::vector<std::vector<char>> boardCopy = copyBoard(board); // Créer une copie de la grille
+    Move bestMove = findBestMove(boardCopy); // Utiliser la copie pour trouver le meilleur coup
+    std::cout << "Best move found: (" << bestMove.row << ", " << bestMove.col << ")" << std::endl; // Journalisation pour le débogage
+
     if (bestMove.row != -1 && bestMove.col != -1) {
-        makeMove(board, bestMove.col, currentPlayer);
+        makeMove(board, bestMove.col, currentPlayer); // Appliquer le meilleur coup sur la grille principale
         if (hasWon(board, currentPlayer)) {
             gameWon = true;
             std::cout << "Bot Player " << currentPlayer << " wins!" << std::endl;
@@ -675,8 +685,9 @@ int Game::evaluateWindow(const std::vector<char>& window, char piece) {
 }
 
 int Game::minimax(std::vector<std::vector<char>>& board, int depth, int alpha, int beta, bool isMaximizingPlayer) {
-    bool isTerminal = hasWon(board, 'X') || hasWon(board, 'O') || !isMovesLeft(board);
+    //std::cout << "Minimax call at depth " << depth << " for player " << (isMaximizingPlayer ? 'X' : 'O') << std::endl; // Journalisation pour le débogage
 
+    bool isTerminal = hasWon(board, 'X') || hasWon(board, 'O') || !isMovesLeft(board);
     if (depth == 0 || isTerminal) {
         if (isTerminal) {
             if (hasWon(board, 'X')) {
@@ -734,25 +745,33 @@ Move Game::findBestMove(std::vector<std::vector<char>>& board) {
     for (int col = 0; col < boardSize; col++) {
         if (isValidMove(board, col)) {
             std::vector<std::vector<char>> newBoard = board;
+            int row = getNextOpenRow(newBoard, col);
             makeMove(newBoard, col, 'X');
             int moveValue = minimax(newBoard, MAX_DEPTH - 1, -INF, INF, false);
+            //std::cout << "Evaluating move (" << row << ", " << col << ") with value " << moveValue << std::endl;
             if (moveValue > bestValue) {
-                bestMove = { getNextOpenRow(newBoard, col), col };
+                bestMove = { row, col };
                 bestValue = moveValue;
             }
         }
+        else {
+            //std::cout << "Column " << col << " is not a valid move." << std::endl;
+        }
     }
+    //std::cout << "Best move selected: (" << bestMove.row << ", " << bestMove.col << ")" << std::endl;
     return bestMove;
 }
 
+
 int Game::getNextOpenRow(const std::vector<std::vector<char>>& board, int col) const {
-    for (int row = boardSize - 1; row >= 0; row--) {
+    for (int row = board.size() - 1; row >= 0; row--) {
         if (board[row][col] == '-') {
             return row;
         }
     }
-    return -1;
+    return -1; // Retourne -1 si la colonne est pleine
 }
+
 
 bool Game::isMovesLeft(const std::vector<std::vector<char>>& board) const {
     for (const auto& row : board) {
