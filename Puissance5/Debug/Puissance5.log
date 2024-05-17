@@ -1,0 +1,17 @@
+﻿  Game.cpp
+  Main.cpp
+  Génération de code en cours...
+Game.obj : error LNK2019: symbole externe non résolu _SDL_CreateWindow référencé dans la fonction "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_DestroyWindow référencé dans la fonction "public: void __thiscall Game::clean(void)" (?clean@Game@@QAEXXZ)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_PollEvent référencé dans la fonction "public: void __thiscall Game::handleEvents(void)" (?handleEvents@Game@@QAEXXZ)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_CreateRenderer référencé dans la fonction "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_SetRenderDrawColor référencé dans la fonction "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_RenderClear référencé dans la fonction "public: void __thiscall Game::render(void)" (?render@Game@@QAEXXZ)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_RenderPresent référencé dans la fonction "public: void __thiscall Game::render(void)" (?render@Game@@QAEXXZ)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_DestroyRenderer référencé dans la fonction "public: void __thiscall Game::clean(void)" (?clean@Game@@QAEXXZ)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_Init référencé dans la fonction "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+Game.obj : error LNK2019: symbole externe non résolu _SDL_Quit référencé dans la fonction "public: void __thiscall Game::clean(void)" (?clean@Game@@QAEXXZ)
+MSVCRTD.lib(exe_main.obj) : error LNK2019: symbole externe non résolu _main référencé dans la fonction "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+D:\Programme\SDL2-devel-2.30.3-VC\SDL2-2.30.3\lib\x64\SDL2.lib : warning LNK4272: type d'ordinateur bibliothèque 'x64' en conflit avec le type d'ordinateur cible 'x86'
+D:\Programme\SDL2-devel-2.30.3-VC\SDL2-2.30.3\lib\x64\SDL2main.lib : warning LNK4272: type d'ordinateur bibliothèque 'x64' en conflit avec le type d'ordinateur cible 'x86'
+C:\Users\siebe\source\repos\Puissance5\Debug\Puissance5.exe : fatal error LNK1120: 11 externes non résolus

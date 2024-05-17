@@ -1,9 +1,12 @@
+#pragma once
+
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <functional>  // Nécessaire pour std::function
+#include <functional>
+
 
 class Button {
 public:
@@ -13,14 +16,18 @@ public:
     void render(SDL_Renderer* renderer);
     void update(const SDL_Event& e);
     bool isPressed() const { return pressed; }
-    void setAction(std::function<void()> action); // Ajoutez cette ligne
+    void setAction(std::function<void()> action);
+    void setToggleMode(bool toggle); // Activation du mode bascule
 
 private:
     SDL_Texture* notPressedTexture;
     SDL_Texture* pressedTexture;
     SDL_Rect srcRect, destRect;
     bool pressed;
-    SDL_Color fallbackColor; // Couleur de repli si le chargement de la texture échoue
-    std::function<void()> action;  // Ajoutez cette ligne
+    bool toggleMode; // Indique si le bouton est en mode bascule
+    bool toggled;    // État actuel du bouton dans le mode bascule
+    SDL_Color fallbackColor;
+    std::function<void()> action;
+    int MARGIN_X = 0;
+    int MARGIN_Y = 0;
 };
-

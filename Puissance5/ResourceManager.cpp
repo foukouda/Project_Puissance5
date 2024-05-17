@@ -27,24 +27,23 @@ void ResourceManager::init(SDL_Renderer* ren) {
 
 // Déclaration simplifiée de la fonction loadTexture
 SDL_Texture* ResourceManager::loadTexture(const std::string& path, SDL_Renderer* renderer) {
-    std::cout << "Loading texture from: " << path << std::endl;
-
-    SDL_Surface* tempSurface = IMG_Load(path.c_str());
-    if (!tempSurface) {
-        std::cerr << "Unable to load image " << path << ": " << IMG_GetError() << std::endl;
+    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+    if (loadedSurface == nullptr) {
+        std::cerr << "Unable to load image " << path << " SDL_image Error: " << IMG_GetError() << std::endl;
         return nullptr;
     }
 
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, tempSurface);
-    SDL_FreeSurface(tempSurface);
-    if (!texture) {
-        std::cerr << "Failed to create texture from surface: " << SDL_GetError() << std::endl;
+    SDL_Texture* newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+    SDL_FreeSurface(loadedSurface);
+
+    if (newTexture == nullptr) {
+        std::cerr << "Unable to create texture from surface: " << SDL_GetError() << std::endl;
         return nullptr;
     }
 
-    std::cout << "Image loaded successfully: " << path << std::endl;
-    return texture;
+    return newTexture;
 }
+
 
 
 void ResourceManager::cleanUp() {

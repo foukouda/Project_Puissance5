@@ -1,0 +1,7 @@
+﻿  Game.cpp
+C:\Users\siebe\source\repos\Puissance5\Puissance5\Game.cpp(600,11): warning C4267: 'initialisation' : conversion de 'size_t' en 'int', perte possible de données
+C:\Users\siebe\source\repos\Puissance5\Puissance5\Game.cpp(607,21): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
+C:\Users\siebe\source\repos\Puissance5\Puissance5\Game.cpp(656,20): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
+C:\Users\siebe\source\repos\Puissance5\Puissance5\Game.cpp(657,23): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
+C:\Users\siebe\source\repos\Puissance5\Puissance5\Game.cpp(658,20): warning C4244: 'initialisation' : conversion de '__int64' en 'int', perte possible de données
+  Puissance5.vcxproj -> C:\Users\siebe\source\repos\Puissance5\x64\Debug\Puissance5.exe
