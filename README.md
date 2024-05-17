@@ -1,5 +1,8 @@
 # Puissance5
 
+// SUIVRE CETTE VIDEO POUR L INSTALLATION DE SDL SUR LE PC https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx&index=1&t=45s
+                                                           https://www.youtube.com/watch?v=YrWQsuDT3NE&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx&index=4
+
 README pour le Projet de Jeu
 
 Vue d'ensemble
@@ -65,7 +68,7 @@ Rendu
 
 Dépendances
 - SDL2
+- SDL2_IMAGE
 - Bibliothèques standard C++
 
-Contact
-Pour toute question ou problème, veuillez contacter [votre_email@example.com].
+
